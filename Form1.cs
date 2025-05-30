@@ -1,3 +1,4 @@
+using static System.Formats.Asn1.AsnWriter;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -6,6 +7,20 @@ namespace Eco_Quest
 {
     public partial class Form1 : Form
     {
+        public Form1()
+        {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MainGame gameForm = new MainGame();
+            gameForm.Show(); //게임 화면 열기
+            this.Hide(); //현재 form 숨기기
+        }
+
+        {
         // 전체 제한시간
         private int totalTime;
         // 남은 시간
@@ -211,5 +226,7 @@ namespace Eco_Quest
                 e.Graphics.DrawRectangle(pen, rect);
             }
         }
+    }
+}
     }
 }
