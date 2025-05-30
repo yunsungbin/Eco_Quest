@@ -31,14 +31,15 @@
             components = new System.ComponentModel.Container();
             title = new Button();
             Limit = new System.Windows.Forms.Timer(components);
-            EcoBox_1 = new Button();
-            EcoBox_2 = new Button();
-            EcoBox_3 = new Button();
-            EcoBox_4 = new Button();
+            PlasticBox = new Button();
+            paperBox = new Button();
+            VinylBox = new Button();
+            CanBox = new Button();
             timer = new Label();
             progressBar1 = new ProgressBar();
             countDownText = new Label();
             CountDownTimer = new System.Windows.Forms.Timer(components);
+            scoreLabel = new Label();
             SuspendLayout();
             // 
             // title
@@ -55,42 +56,43 @@
             // 
             Limit.Tick += timer1_Tick;
             // 
-            // EcoBox_1
+            // PlasticBox
             // 
-            EcoBox_1.Location = new Point(54, 95);
-            EcoBox_1.Name = "EcoBox_1";
-            EcoBox_1.Size = new Size(150, 240);
-            EcoBox_1.TabIndex = 1;
-            EcoBox_1.Text = "plastic";
-            EcoBox_1.UseVisualStyleBackColor = true;
-            EcoBox_1.Click += EcoBox_1_Click;
+            PlasticBox.Location = new Point(54, 95);
+            PlasticBox.Name = "PlasticBox";
+            PlasticBox.Size = new Size(150, 240);
+            PlasticBox.TabIndex = 1;
+            PlasticBox.Text = "plastic";
+            PlasticBox.UseVisualStyleBackColor = true;
+            PlasticBox.Click += EcoBox_1_Click;
             // 
-            // EcoBox_2
+            // paperBox
             // 
-            EcoBox_2.Location = new Point(249, 95);
-            EcoBox_2.Name = "EcoBox_2";
-            EcoBox_2.Size = new Size(150, 240);
-            EcoBox_2.TabIndex = 2;
-            EcoBox_2.Text = "paper";
-            EcoBox_2.UseVisualStyleBackColor = true;
+            paperBox.Location = new Point(249, 95);
+            paperBox.Name = "paperBox";
+            paperBox.Size = new Size(150, 240);
+            paperBox.TabIndex = 2;
+            paperBox.Text = "paper";
+            paperBox.UseVisualStyleBackColor = true;
+            paperBox.Click += paperBox_Click;
             // 
-            // EcoBox_3
+            // VinylBox
             // 
-            EcoBox_3.Location = new Point(450, 95);
-            EcoBox_3.Name = "EcoBox_3";
-            EcoBox_3.Size = new Size(150, 240);
-            EcoBox_3.TabIndex = 3;
-            EcoBox_3.Text = "vinyl";
-            EcoBox_3.UseVisualStyleBackColor = true;
+            VinylBox.Location = new Point(450, 95);
+            VinylBox.Name = "VinylBox";
+            VinylBox.Size = new Size(150, 240);
+            VinylBox.TabIndex = 3;
+            VinylBox.Text = "vinyl";
+            VinylBox.UseVisualStyleBackColor = true;
             // 
-            // EcoBox_4
+            // CanBox
             // 
-            EcoBox_4.Location = new Point(647, 95);
-            EcoBox_4.Name = "EcoBox_4";
-            EcoBox_4.Size = new Size(150, 240);
-            EcoBox_4.TabIndex = 4;
-            EcoBox_4.Text = "can";
-            EcoBox_4.UseVisualStyleBackColor = true;
+            CanBox.Location = new Point(647, 95);
+            CanBox.Name = "CanBox";
+            CanBox.Size = new Size(150, 240);
+            CanBox.TabIndex = 4;
+            CanBox.Text = "can";
+            CanBox.UseVisualStyleBackColor = true;
             // 
             // timer
             // 
@@ -123,18 +125,28 @@
             // 
             CountDownTimer.Tick += CountDownTimer_Tick;
             // 
+            // scoreLabel
+            // 
+            scoreLabel.AutoSize = true;
+            scoreLabel.Location = new Point(54, 58);
+            scoreLabel.Name = "scoreLabel";
+            scoreLabel.Size = new Size(74, 25);
+            scoreLabel.TabIndex = 8;
+            scoreLabel.Text = "점수 : 0";
+            // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(843, 604);
+            Controls.Add(scoreLabel);
             Controls.Add(countDownText);
             Controls.Add(progressBar1);
             Controls.Add(timer);
-            Controls.Add(EcoBox_4);
-            Controls.Add(EcoBox_3);
-            Controls.Add(EcoBox_2);
-            Controls.Add(EcoBox_1);
+            Controls.Add(CanBox);
+            Controls.Add(VinylBox);
+            Controls.Add(paperBox);
+            Controls.Add(PlasticBox);
             Controls.Add(title);
             Name = "MainGame";
             Text = "MainGame";
@@ -147,13 +159,14 @@
 
         private Button title;
         private System.Windows.Forms.Timer Limit;
-        private Button EcoBox_1;
-        private Button EcoBox_2;
-        private Button EcoBox_3;
-        private Button EcoBox_4;
+        private Button PlasticBox;
+        private Button paperBox;
+        private Button VinylBox;
+        private Button CanBox;
         private Label timer;
         private ProgressBar progressBar1;
         private Label countDownText;
         private System.Windows.Forms.Timer CountDownTimer;
+        private Label scoreLabel;
     }
 }
