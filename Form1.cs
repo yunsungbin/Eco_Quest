@@ -16,119 +16,119 @@ namespace Eco_Quest
         private void button1_Click(object sender, EventArgs e)
         {
             MainGame gameForm = new MainGame();
-            gameForm.Show(); //°ÔÀÓ È­¸é ¿­±â
-            this.Hide(); //ÇöÀç form ¼û±â±â
+            gameForm.Show(); //ê²Œì„ í™”ë©´ ì—´ê¸°
+            this.Hide(); //í˜„ì¬ form ìˆ¨ê¸°ê¸°
         }
 
         
-        // ÀüÃ¼ Á¦ÇÑ½Ã°£
+        // ì „ì²´ ì œí•œì‹œê°„
         private int totalTime;
-        // ³²Àº ½Ã°£
+        // ë‚¨ì€ ì‹œê°„
         private int timeLeft;
 
-        // Èçµé¸²+»¡°£ Å×µÎ¸® È¿°ú Å¸ÀÌ¸Ó
+        // í”ë“¤ë¦¼+ë¹¨ê°„ í…Œë‘ë¦¬ íš¨ê³¼ íƒ€ì´ë¨¸
         private System.Windows.Forms.Timer timerEffect = new System.Windows.Forms.Timer();
 
-        // »¡°£ Å×µÎ¸®°¡ º¸ÀÏ »çÁø
+        // ë¹¨ê°„ í…Œë‘ë¦¬ê°€ ë³´ì¼ ì‚¬ì§„
         private PictureBox targetPictureBox;
-        // Èçµé¸² È½¼ö Ä«¿îÆ®
+        // í”ë“¤ë¦¼ íšŸìˆ˜ ì¹´ìš´íŠ¸
         private int shakeCount = 0;
-        // Èçµé±â Àü ¿ø·¡ X À§Ä¡ ÀúÀå
+        // í”ë“¤ê¸° ì „ ì›ë˜ X ìœ„ì¹˜ ì €ì¥
         private int startX;
-        // »¡°£ Å×µÎ¸®¸¦ Ç¥½ÃÇÒÁö ¿©ºÎ
+        // ë¹¨ê°„ í…Œë‘ë¦¬ë¥¼ í‘œì‹œí• ì§€ ì—¬ë¶€
         private bool showRedBorder = false;
 
-        // ³ë¶õ Å×µÎ¸® È¿°ú¿ë º¯¼ö
+        // ë…¸ë€ í…Œë‘ë¦¬ íš¨ê³¼ìš© ë³€ìˆ˜
         private bool showYellowBorder = false;
         private PictureBox yellowBorderPictureBox = null;
 
-        // ½Ã°£ Å¸ÀÌ¸Ó Tick ÀÌº¥Æ®: 1ÃÊ¸¶´Ù ½ÇÇà
+        // ì‹œê°„ íƒ€ì´ë¨¸ Tick ì´ë²¤íŠ¸: 1ì´ˆë§ˆë‹¤ ì‹¤í–‰
         private void timer_Time_Tick(object sender, EventArgs e)
         {
             if (timeLeft > 0)
             {
-                timeLeft--; // ³²Àº ½Ã°£ 1ÃÊ¾¿ °¨¼Ò
-                progressBar1.Value = timeLeft; // ÇÁ·Î±×·¡½º ¹Ù °»½Å
+                timeLeft--; // ë‚¨ì€ ì‹œê°„ 1ì´ˆì”© ê°ì†Œ
+                progressBar1.Value = timeLeft; // í”„ë¡œê·¸ë˜ìŠ¤ ë°” ê°±ì‹ 
             }
             else
             {
-                timer_Time.Stop(); // ½Ã°£ÀÌ ´Ù µÇ¸é Å¸ÀÌ¸Ó Á¤Áö
+                timer_Time.Stop(); // ì‹œê°„ì´ ë‹¤ ë˜ë©´ íƒ€ì´ë¨¸ ì •ì§€
                 MessageBox.Show("Game over!");
             }
         }
 
-        // Á¤´ä È¿°ú: Èçµé¸² ¾øÀÌ ³ë¶õ Å×µÎ¸® Àá±ñ Ç¥½Ã
+        // ì •ë‹µ íš¨ê³¼: í”ë“¤ë¦¼ ì—†ì´ ë…¸ë€ í…Œë‘ë¦¬ ì ê¹ í‘œì‹œ
         private void ShowCorrectEffect(PictureBox pb)
         {
             if (pb == null) return;
 
-            yellowBorderPictureBox = pb;   // ³ë¶õ Å×µÎ¸® Ç¥½Ã ´ë»ó ÁöÁ¤
-            showYellowBorder = true;       // ³ë¶õ Å×µÎ¸® Ç¥½Ã ÄÑ±â
-            pb.Invalidate();               // ´Ù½Ã ±×¸®±â ¿äÃ» (Å×µÎ¸® Ç¥½Ã À§ÇØ)
+            yellowBorderPictureBox = pb;   // ë…¸ë€ í…Œë‘ë¦¬ í‘œì‹œ ëŒ€ìƒ ì§€ì •
+            showYellowBorder = true;       // ë…¸ë€ í…Œë‘ë¦¬ í‘œì‹œ ì¼œê¸°
+            pb.Invalidate();               // ë‹¤ì‹œ ê·¸ë¦¬ê¸° ìš”ì²­ (í…Œë‘ë¦¬ í‘œì‹œ ìœ„í•´)
 
-            // 0.3ÃÊ ÈÄ¿¡ ³ë¶õ Å×µÎ¸® ÇØÁ¦¿ë Å¸ÀÌ¸Ó »ı¼º ¹× ½ÃÀÛ
+            // 0.3ì´ˆ í›„ì— ë…¸ë€ í…Œë‘ë¦¬ í•´ì œìš© íƒ€ì´ë¨¸ ìƒì„± ë° ì‹œì‘
             System.Windows.Forms.Timer yellowBorderTimer = new System.Windows.Forms.Timer();
-            yellowBorderTimer.Interval = 300; // 0.3ÃÊ
+            yellowBorderTimer.Interval = 300; // 0.3ì´ˆ
             yellowBorderTimer.Tick += YellowBorderTimer_Tick;
             yellowBorderTimer.Start();
         }
 
-        // ³ë¶õ Å×µÎ¸® Å¸ÀÌ¸Ó Tick ÀÌº¥Æ® ÇÚµé·¯ (ÀÏ¹İ ¸Ş¼­µå)
+        // ë…¸ë€ í…Œë‘ë¦¬ íƒ€ì´ë¨¸ Tick ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ (ì¼ë°˜ ë©”ì„œë“œ)
         private void YellowBorderTimer_Tick(object sender, EventArgs e)
         {
             System.Windows.Forms.Timer timer = sender as System.Windows.Forms.Timer;
             if (timer == null) return;
 
-            showYellowBorder = false;                      // ³ë¶õ Å×µÎ¸® ²ô±â
+            showYellowBorder = false;                      // ë…¸ë€ í…Œë‘ë¦¬ ë„ê¸°
             if (yellowBorderPictureBox != null)
             {
-                yellowBorderPictureBox.Invalidate();       // ´Ù½Ã ±×·Á¼­ Å×µÎ¸® Á¦°Å
-                yellowBorderPictureBox = null;             // ´ë»ó ÇØÁ¦
+                yellowBorderPictureBox.Invalidate();       // ë‹¤ì‹œ ê·¸ë ¤ì„œ í…Œë‘ë¦¬ ì œê±°
+                yellowBorderPictureBox = null;             // ëŒ€ìƒ í•´ì œ
             }
 
-            timer.Stop();                                  // Å¸ÀÌ¸Ó ÁßÁö
-            timer.Dispose();                               // ¸Ş¸ğ¸® Á¤¸®
+            timer.Stop();                                  // íƒ€ì´ë¨¸ ì¤‘ì§€
+            timer.Dispose();                               // ë©”ëª¨ë¦¬ ì •ë¦¬
         }
 
-        // ¿À´ä È¿°ú: ÁÂ¿ì Èçµé±â + »¡°£ Å×µÎ¸®
+        // ì˜¤ë‹µ íš¨ê³¼: ì¢Œìš° í”ë“¤ê¸° + ë¹¨ê°„ í…Œë‘ë¦¬
         private void ShakeAndRedBorder(PictureBox pb)
         {
             if (pb == null) return;
 
-            targetPictureBox = pb; // È¿°ú¸¦ ÁÙ ´ë»ó ¼³Á¤
-            startX = pb.Location.X; // ÇöÀç X À§Ä¡ ÀúÀå
-            shakeCount = 0; // Èçµé¸² È½¼ö ÃÊ±âÈ­
-            showRedBorder = true; // Å×µÎ¸® º¸ÀÌ°Ô ¼³Á¤
-            pb.Invalidate(); // °­Á¦·Î ´Ù½Ã ±×¸®±â ¿äÃ» (Å×µÎ¸® ¹İ¿µ À§ÇØ)
+            targetPictureBox = pb; // íš¨ê³¼ë¥¼ ì¤„ ëŒ€ìƒ ì„¤ì •
+            startX = pb.Location.X; // í˜„ì¬ X ìœ„ì¹˜ ì €ì¥
+            shakeCount = 0; // í”ë“¤ë¦¼ íšŸìˆ˜ ì´ˆê¸°í™”
+            showRedBorder = true; // í…Œë‘ë¦¬ ë³´ì´ê²Œ ì„¤ì •
+            pb.Invalidate(); // ê°•ì œë¡œ ë‹¤ì‹œ ê·¸ë¦¬ê¸° ìš”ì²­ (í…Œë‘ë¦¬ ë°˜ì˜ ìœ„í•´)
 
-            timerEffect.Start(); // Èçµé±â È¿°ú Å¸ÀÌ¸Ó ½ÃÀÛ
+            timerEffect.Start(); // í”ë“¤ê¸° íš¨ê³¼ íƒ€ì´ë¨¸ ì‹œì‘
         }
 
-        // Èçµé±â È¿°ú¸¦ ¸¸µå´Â Å¸ÀÌ¸Ó Tick ÀÌº¥Æ®
+        // í”ë“¤ê¸° íš¨ê³¼ë¥¼ ë§Œë“œëŠ” íƒ€ì´ë¨¸ Tick ì´ë²¤íŠ¸
         private void timerEffect_Tick(object sender, EventArgs e)
         {
             if (targetPictureBox == null) return;
-            // °ªÀÌ ¾øÀ» ¶§ ½ÇÇà ½Ã ¿À·ù ¹æÁö
+            // ê°’ì´ ì—†ì„ ë•Œ ì‹¤í–‰ ì‹œ ì˜¤ë¥˜ ë°©ì§€
 
             if (shakeCount < 10)
             {
-                // È¦¼ö/Â¦¼ö¿¡ µû¶ó ÁÂ¿ì ÀÌµ¿
+                // í™€ìˆ˜/ì§ìˆ˜ì— ë”°ë¼ ì¢Œìš° ì´ë™
                 int moveAmount = (shakeCount % 2 == 0) ? 5 : -5;
                 targetPictureBox.Left = startX + moveAmount;
                 shakeCount++;
             }
             else
             {
-                // Èçµé±â ³¡³ª¸é À§Ä¡ º¹¿ø ¹× Å×µÎ¸® Á¦°Å
+                // í”ë“¤ê¸° ëë‚˜ë©´ ìœ„ì¹˜ ë³µì› ë° í…Œë‘ë¦¬ ì œê±°
                 timerEffect.Stop();
                 targetPictureBox.Left = startX;
                 showRedBorder = false;
-                targetPictureBox.Invalidate(); // ´Ù½Ã ±×·Á¼­ Å×µÎ¸® Á¦°Å
-                targetPictureBox = null; // È¿°ú Á¾·á
+                targetPictureBox.Invalidate(); // ë‹¤ì‹œ ê·¸ë ¤ì„œ í…Œë‘ë¦¬ ì œê±°
+                targetPictureBox = null; // íš¨ê³¼ ì¢…ë£Œ
             }
         }
 
-        // Å¬¸¯ ÀÌº¥Æ® (ÀÌ°Å´Â ´Ù¸¥ºĞ°Å ³Ö¾î¾ßÇØ¼­)
+        // í´ë¦­ ì´ë²¤íŠ¸ (ì´ê±°ëŠ” ë‹¤ë¥¸ë¶„ê±° ë„£ì–´ì•¼í•´ì„œ)
         private void pictureBoxRecycle1_Click(object sender, EventArgs e)
         {
             //
@@ -149,7 +149,7 @@ namespace Eco_Quest
             //
         }
 
-        // ÀÌº¥Æ® // »¡°£/³ë¶õ Å×µÎ¸®
+        // ì´ë²¤íŠ¸ // ë¹¨ê°„/ë…¸ë€ í…Œë‘ë¦¬
         private void pictureBoxRecycle1_Paint(object sender, PaintEventArgs e)
         {
             if (showRedBorder && targetPictureBox == pictureBoxRecycle1)
@@ -186,20 +186,20 @@ namespace Eco_Quest
                 DrawYellowBorder(e, pictureBoxRecycle4);
         }
 
-        // »¡°£ Å×µÎ¸® ±×¸®´Â ½ÇÁ¦ ÇÔ¼ö
+        // ë¹¨ê°„ í…Œë‘ë¦¬ ê·¸ë¦¬ëŠ” ì‹¤ì œ í•¨ìˆ˜
         private void DrawRedBorder(PaintEventArgs e, PictureBox pb)
         {
-            using (Pen pen = new Pen(Color.Red, 5)) // Å×µÎ¸® ±½±â5, »¡°£»ö
+            using (Pen pen = new Pen(Color.Red, 5)) // í…Œë‘ë¦¬ êµµê¸°5, ë¹¨ê°„ìƒ‰
             {
                 Rectangle rect = new Rectangle(0, 0, pb.Width - 1, pb.Height - 1);
-                e.Graphics.DrawRectangle(pen, rect); // Å×µÎ¸® ±×¸²
+                e.Graphics.DrawRectangle(pen, rect); // í…Œë‘ë¦¬ ê·¸ë¦¼
             }
         }
 
-        // ³ë¶õ Å×µÎ¸® ±×¸®´Â ÇÔ¼ö
+        // ë…¸ë€ í…Œë‘ë¦¬ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
         private void DrawYellowBorder(PaintEventArgs e, PictureBox pb)
         {
-            using (Pen pen = new Pen(Color.Yellow, 5)) // Å×µÎ¸® ±½±â5, ³ë¶õ»ö
+            using (Pen pen = new Pen(Color.Yellow, 5)) // í…Œë‘ë¦¬ êµµê¸°5, ë…¸ë€ìƒ‰
             {
                 Rectangle rect = new Rectangle(0, 0, pb.Width - 1, pb.Height - 1);
                 e.Graphics.DrawRectangle(pen, rect);
@@ -209,3 +209,121 @@ namespace Eco_Quest
 }
 
     
+using System.Media;
+using static System.Formats.Asn1.AsnWriter;
+
+namespace Eco_Quest
+{
+    public partial class Form1 : Form
+    {
+        //ë²„íŠ¼ì´ë‘ ë¼ë²¨ í´ë˜ìŠ¤ í•„ë“œë¡œ ì„ ì–¸
+        private Button EasyButton = new Button();
+        private Button NormalButton = new Button();
+        private Button HardButton = new Button();
+        private Label TitleName = new Label();
+
+
+        public Form1()
+        {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            InitializeGameTitleUI();
+
+            //í¼ í¬ê¸°ê°€ ë°”ë€” ë•Œë§ˆë‹¤ ìë™ìœ¼ë¡œ ìœ„ì¹˜ ê³„ì‚°
+            this.Resize += (s, e) => CenterControls();
+
+
+        }
+
+        private void CenterControls()
+        {
+            // ì œëª© ê°€ìš´ë° ì •ë ¬
+            TitleName.Left = (this.ClientSize.Width - TitleName.Width) / 2;
+
+            int w = 100, h = 40;
+            int x = (this.ClientSize.Width - w) / 2;
+            int yStart = TitleName.Bottom + 100;
+
+            EasyButton.Location = new Point(x, yStart);
+            NormalButton.Location = new Point(x, yStart + 100);
+            HardButton.Location = new Point(x, yStart + 200);
+        }
+
+        private void InitializeGameTitleUI() // ì œëª©ê³¼ ë²„íŠ¼ë“¤ì„ ì´ˆê¸°í™”í•˜ëŠ” ë©”ì„œë“œ
+        {
+            // ì œëª© ë¼ë²¨
+            TitleName.Text = "Eco-Quest";
+            TitleName.Font = new Font("êµ´ë¦¼", 20, FontStyle.Bold); // ê¸€ê¼´: êµ´ë¦¼, í¬ê¸°: 20, êµµê²Œ
+            TitleName.AutoSize = true; // í…ìŠ¤íŠ¸ ê¸¸ì´ì— ë”°ë¼ í¬ê¸° ìë™ ì¡°ì •
+            TitleName.Top = 100;
+
+            // ì œëª© ê°€ìš´ë° ì •ë ¬
+            TitleName.Left = (this.ClientSize.Width - TitleName.Width) / 2;
+
+            // í¼ì— ì¶”ê°€í•˜ê¸°
+            this.Controls.Add(TitleName);
+
+            // ì´ˆë³´,ì¤‘ìˆ˜,ê³ ìˆ˜ì˜ ë²„íŠ¼ í¬ê¸° ì¡°ì ˆ
+            int w = 100, h = 40;
+            int x = (this.ClientSize.Width - w) / 2;
+            int yStart = TitleName.Bottom + 100;
+
+            // ì™•ì´ˆë³´ ë²„íŠ¼
+            EasyButton.Size = new Size(w, h);
+            EasyButton.Text = "ì™•ì´ˆë³´";
+            EasyButton.Location = new Point(x, yStart);
+            EasyButton.Click += (s, e) => // í´ë¦­ ì´ë²¤íŠ¸ ì„¤ì •
+            {
+                //PlayClickSound(); // í´ë¦­ ì†Œë¦¬ ì¬ìƒ ê·¼ë° ì§€ê¸ˆ ë¬¸ì œ ìƒê²¨ì„œ ì‘ë™ ì•ˆë˜ê±°ë“ ìš”? ê·¸ë˜ì„œ ì¼ë‹¨ ì£¼ì„ì²˜ë¦¬ í–ˆìŠµë‹ˆë‹¤. ì¶”í›„ì— ë„£ê² ìŠµë‹ˆë‹¤.
+                MessageBox.Show("í˜„ì¬ ì œì‘ì¤‘ì…ë‹ˆë‹¤.");
+            };
+            this.Controls.Add(EasyButton);
+
+            // ì¤‘ìˆ˜ ë²„íŠ¼
+            NormalButton.Size = new Size(w, h);
+            NormalButton.Text = "ì¤‘ìˆ˜";
+            NormalButton.Location = new Point(x, yStart + 100);
+            NormalButton.Click += (s, e) =>
+            {
+                //PlayClickSound();
+                OpenGameForm("ì¤‘ìˆ˜"); // ê²Œì„ í™”ë©´ ì—´ê¸°
+            };
+            this.Controls.Add(NormalButton);
+
+            // ê³ ìˆ˜ ë²„íŠ¼
+            HardButton.Size = new Size(w, h);
+            HardButton.Text = "ê³ ìˆ˜";
+            HardButton.Location = new Point(x, yStart + 200);
+            HardButton.Click += (s, e) =>
+            {
+                // PlayClickSound();
+                MessageBox.Show("í˜„ì¬ ì œì‘ì¤‘ì…ë‹ˆë‹¤.");
+            };
+            this.Controls.Add(HardButton);
+        }
+
+        private void OpenGameForm(string level)
+        {
+            MessageBox.Show($"ì„ íƒí•œ ë‚œì´ë„: {level}");
+            MainGame gameForm = new MainGame();
+            gameForm.Show();
+            this.Hide();
+        }
+
+
+        private void EasyButton_Click(object sender, EventArgs e)
+        {
+            SoundPlayer player = new SoundPlayer("click.wav");
+        }
+
+        private void NormalButton_Click(object sender, EventArgs e)
+        {
+            SoundPlayer player = new SoundPlayer("click.wav");
+        }
+
+        private void HardButton_Click(object sender, EventArgs e)
+        {
+            SoundPlayer player = new SoundPlayer("click.wav");
+        }
+    }
+}
