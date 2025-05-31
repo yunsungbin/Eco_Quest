@@ -20,7 +20,7 @@ namespace Eco_Quest
             this.Hide(); //현재 form 숨기기
         }
 
-        {
+        
         // 전체 제한시간
         private int totalTime;
         // 남은 시간
@@ -41,27 +41,6 @@ namespace Eco_Quest
         // 노란 테두리 효과용 변수
         private bool showYellowBorder = false;
         private PictureBox yellowBorderPictureBox = null;
-
-        public Form1()
-        {
-            InitializeComponent();
-
-            totalTime = 60; // 제한 시간을 60초로 설정
-            timeLeft = totalTime;
-
-            // 프로그래스 바 설정
-            progressBar1.Maximum = totalTime;
-            progressBar1.Value = totalTime;
-
-            // 타이머 설정: 1초마다 Tick 이벤트 발생
-            timer_Time.Interval = 1000; // 1초
-            timer_Time.Tick += timer_Time_Tick; // Tick이 발생하면 timer_Time_Tick 실행
-            timer_Time.Start(); // 시작
-
-            // 흔들림 효과용 타이머 설정: 0.05초마다 Tick
-            timerEffect.Interval = 50;
-            timerEffect.Tick += timerEffect_Tick;
-        }
 
         // 시간 타이머 Tick 이벤트: 1초마다 실행
         private void timer_Time_Tick(object sender, EventArgs e)
@@ -228,5 +207,5 @@ namespace Eco_Quest
         }
     }
 }
-    }
-}
+
+    
