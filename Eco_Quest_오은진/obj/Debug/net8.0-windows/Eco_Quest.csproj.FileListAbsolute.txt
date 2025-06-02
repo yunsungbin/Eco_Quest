@@ -1,0 +1,52 @@
+C:\Users\p\Source\Repos\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.exe
+C:\Users\p\Source\Repos\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.deps.json
+C:\Users\p\Source\Repos\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.runtimeconfig.json
+C:\Users\p\Source\Repos\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.dll
+C:\Users\p\Source\Repos\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.pdb
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.Form1.resources
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.MainGame.resources
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.csproj.GenerateResource.cache
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.AssemblyInfoInputs.cache
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.AssemblyInfo.cs
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.csproj.CoreCompileInputs.cache
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.sourcelink.json
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.dll
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\refint\Eco_Quest.dll
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.pdb
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.genruntimeconfig.cache
+C:\Users\p\Source\Repos\Eco_Quest\obj\Debug\net8.0-windows\ref\Eco_Quest.dll
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.exe
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.deps.json
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.runtimeconfig.json
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.dll
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\bin\Debug\net8.0-windows\Eco_Quest.pdb
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.Form1.resources
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.MainGame.resources
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.csproj.GenerateResource.cache
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.AssemblyInfoInputs.cache
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.AssemblyInfo.cs
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.csproj.CoreCompileInputs.cache
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.dll
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\refint\Eco_Quest.dll
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.pdb
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\Eco_Quest.genruntimeconfig.cache
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest\obj\Debug\net8.0-windows\ref\Eco_Quest.dll
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\bin\Debug\net8.0-windows\Eco_Quest.exe
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\bin\Debug\net8.0-windows\Eco_Quest.deps.json
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\bin\Debug\net8.0-windows\Eco_Quest.runtimeconfig.json
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\bin\Debug\net8.0-windows\Eco_Quest.dll
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\bin\Debug\net8.0-windows\Eco_Quest.pdb
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.Form1.resources
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.MainGame.resources
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.csproj.GenerateResource.cache
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.AssemblyInfoInputs.cache
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.AssemblyInfo.cs
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.csproj.CoreCompileInputs.cache
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.dll
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\refint\Eco_Quest.dll
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.pdb
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\Eco_Quest.genruntimeconfig.cache
+C:\Users\oheun\OneDrive\바탕 화면\Eco_Quest_오은진\obj\Debug\net8.0-windows\ref\Eco_Quest.dll
