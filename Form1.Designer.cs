@@ -28,10 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            button1 = new Button();
+            SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Cornsilk;
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.Location = new Point(238, 180);
+            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(103, 40);
+            button1.TabIndex = 0;
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(573, 288);
+            Controls.Add(button1);
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "Form1";
+            Text = "Title";
+            ResumeLayout(false);
         }
 
         #endregion
