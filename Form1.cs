@@ -24,6 +24,18 @@ namespace Eco_Quest
 
         }
 
+        private void PlayClickSound()
+        {
+            try
+            {
+                SoundPlayer player = new SoundPlayer("click.wav");
+                player.Play();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("사운드 오류: " + ex.Message);
+            }
+        }
         private void CenterControls()
         {
             // 제목 가운데 정렬
@@ -63,7 +75,7 @@ namespace Eco_Quest
             EasyButton.Location = new Point(x, yStart);
             EasyButton.Click += (s, e) => // 클릭 이벤트 설정
             {
-                //PlayClickSound(); // 클릭 소리 재생 근데 지금 문제 생겨서 작동 안되거든요? 그래서 일단 주석처리 했습니다. 추후에 넣겠습니다.
+                PlayClickSound();
                 MessageBox.Show("현재 제작중입니다.");
             };
             this.Controls.Add(EasyButton);
@@ -74,7 +86,7 @@ namespace Eco_Quest
             NormalButton.Location = new Point(x, yStart + 100);
             NormalButton.Click += (s, e) =>
             {
-                //PlayClickSound();
+                PlayClickSound();
                 OpenGameForm("중수"); // 게임 화면 열기
             };
             this.Controls.Add(NormalButton);
@@ -85,7 +97,7 @@ namespace Eco_Quest
             HardButton.Location = new Point(x, yStart + 200);
             HardButton.Click += (s, e) =>
             {
-                // PlayClickSound();
+                PlayClickSound();
                 MessageBox.Show("현재 제작중입니다.");
             };
             this.Controls.Add(HardButton);
@@ -102,17 +114,23 @@ namespace Eco_Quest
 
         private void EasyButton_Click(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer("click.wav");
+            SoundPlayer player = new SoundPlayer("click");
+            player.Play();
+
         }
 
         private void NormalButton_Click(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer("click.wav");
+            SoundPlayer player = new SoundPlayer("click");
+            player.Play();
+
         }
 
         private void HardButton_Click(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer("click.wav");
+            SoundPlayer player = new SoundPlayer("click");
+            player.Play();
+
         }
     }
 }
