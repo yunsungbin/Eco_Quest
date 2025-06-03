@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Eco_Quest
 {
@@ -200,6 +201,16 @@ namespace Eco_Quest
             CheckTrash("종이");
         }
 
+        private void VinylBox_Click(object sender, EventArgs e)
+        {
+            CheckTrash("비닐");
+        }
+
+        private void CanBox_Click(object sender, EventArgs e)
+        {
+            CheckTrash("캔");
+        }
+
         //카운트다운 타이머 Tick
         private void CountDownTimer_Tick(object sender, EventArgs e)
         {
@@ -267,26 +278,41 @@ namespace Eco_Quest
         //분리수거 버튼 생성
         private void CreateButtons()
         {
-            Dictionary<string, string> buttonInfo = new Dictionary<string, string>
+            Dictionary<string, string> buttonType = new Dictionary<string, string>
             {
-                { "PlasticBox", "플라스틱" },
-                { "PaperBox", "paper" },
-                { "VinylBox", "vinyl" },
-                { "CanBox", "can" }
+                { "플라스틱", "plastic" },
+                { "종이", "paper" },
+                { "비닐", "vinyl" },
+                { "캔", "can" }
             };
 
             int i = 0;
 
-            foreach(var item in buttonInfo)
+            foreach (var item in buttonType)
             {
-                Button btn = this.Controls.Find(item.Key, true).FirstOrDefault() as Button;
-
-                if(btn != null)
+                Button btn = new Button
                 {
-                    SetButtonImage(btn, item.Value, item.Key.Replace("Box", ""));
-                    btn.Location = new Point(50 + i * 200, 100);
-                    i++;
-                }
+                    Name = item.Value + "Box",
+                    Size = new Size(150, 240),
+                    Location = new Point(50 + (i * 120), 95),
+                    Tag = item.Key
+                };
+
+                //btn.Image = Properties.Resources.Plastic;
+                btn.ImageAlign = ContentAlignment.TopCenter;
+                btn.Text = item.Key;
+                btn.TextAlign = ContentAlignment.BottomCenter;
+
+                //클릭 이벤트
+                btn.Click += (sender, e) =>
+                {
+                    Button clicked = sender as Button;
+                    string clickedType = clicked.Tag.ToString();
+                    CheckTrash(clickedType);
+                };
+
+                this.Controls.Add(btn);
+                i++;
             }
         }
 
