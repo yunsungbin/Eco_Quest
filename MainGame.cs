@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Eco_Quest
 {
@@ -37,7 +36,7 @@ namespace Eco_Quest
         private System.Windows.Forms.Timer timerEffect = new System.Windows.Forms.Timer();
 
         // 빨간 테두리가 보일 사진
-        private Button targetButton;
+        private PictureBox targetPictureBox;
         // 흔들림 횟수 카운트
         private int shakeCount = 0;
         // 흔들기 전 원래 X 위치 저장
@@ -47,9 +46,7 @@ namespace Eco_Quest
 
         // 노란 테두리 효과용 변수
         private bool showYellowBorder = false;
-        private Button yellowBorderButton = null;
-
-
+        private PictureBox yellowBorderPictureBox = null;
 
         //쓰레기 이름과 분리수거 종류 매핑(key: 이미지, value : 종류)
         private Dictionary<string, string> trashList = new Dictionary<string, string>
@@ -69,10 +66,6 @@ namespace Eco_Quest
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-
-            // timerEffect 초기화 및 이벤트 연결 (1번 수정 사항)
-            timerEffect.Interval = 50; // 흔들림 효과 간격 (50ms)
-            timerEffect.Tick += timerEffect_Tick;
         }
 
         private void MainGame_Load(object sender, EventArgs e)
@@ -91,8 +84,6 @@ namespace Eco_Quest
             //게임 타이머 설정
             gameTimer.Interval = 1000;
             gameTimer.Tick += timer1_Tick;
-
-
         }
 
         //리소스 이미지 로드 및 dictionary에 저장
@@ -202,26 +193,22 @@ namespace Eco_Quest
 
         private void EcoBox_1_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            CheckTrash("플라스틱", btn);
+            CheckTrash("플라스틱");
         }
 
         private void paperBox_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            CheckTrash("종이", btn);
-
+            CheckTrash("종이");
         }
+
         private void VinylBox_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            CheckTrash("비닐", btn);
+            CheckTrash("비닐");
         }
 
         private void CanBox_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            CheckTrash("캔", btn);
+            CheckTrash("캔");
         }
 
         //카운트다운 타이머 Tick
@@ -242,46 +229,23 @@ namespace Eco_Quest
         }
 
         //쓰레기통 버튼 클릭 시
-        private void CheckTrash(string clickType, Button clickedButton)
+        private void CheckTrash(string clickType)
         {
             string correctType = trashList[trashType];
 
-            if (clickType == correctType)
+            if (clickType == trashType)
             {
                 score += 10;
                 scoreLabel.Text = "점수 : " + score;
                 ShowTrash();
-
-                ShowCorrectEffect(clickedButton);
-
-                PlayCorrectSound(); //정답 소리 재생
             }
             else
             {
                 gameTime -= 5;
                 if (gameTime < 0) gameTime = 0;
-
-                ShakeAndRedBorder(clickedButton);
-
-                PlayErrorSound(); //오답 소리 재생
             }
 
             UpdateTime();
-        }
-
-
-        //정답소리 재생함수
-        private void PlayCorrectSound()
-        {
-            SoundPlayer player = new SoundPlayer("correct.wav");
-            player.Play();
-        }
-
-        //오답 소리 재생 함수
-        private void PlayErrorSound()
-        {
-            SoundPlayer player = new SoundPlayer("error.wav");
-            player.Play();
         }
 
         private void SetButtonImage(Button btn, string imageName, string text)
@@ -314,39 +278,52 @@ namespace Eco_Quest
         //분리수거 버튼 생성
         private void CreateButtons()
         {
-            Dictionary<string, string> buttonInfo = new Dictionary<string, string>
+            Dictionary<string, string> buttonType = new Dictionary<string, string>
             {
-                { "PlasticBox", "플라스틱" },
-                { "PaperBox", "paper" },
-                { "VinylBox", "vinyl" },
-                { "CanBox", "can" }
+                { "플라스틱", "plastic" },
+                { "종이", "paper" },
+                { "비닐", "vinyl" },
+                { "캔", "can" }
             };
 
             int i = 0;
 
-            foreach (var item in buttonInfo)
+            foreach (var item in buttonType)
             {
-                Button btn = this.Controls.Find(item.Key, true).FirstOrDefault() as Button;
-
-                if (btn != null)
+                Button btn = new Button
                 {
-                    SetButtonImage(btn, item.Value, item.Key.Replace("Box", ""));
-                    btn.Location = new Point(50 + i * 200, 100);
-                    i++;
+                    Name = item.Value + "Box",
+                    Size = new Size(150, 240),
+                    Location = new Point(50 + (i * 120), 95),
+                    Tag = item.Key
+                };
 
-                    btn.Paint += Button_Paint; //Paint이벤트 연결
-                }
+                //btn.Image = Properties.Resources.Plastic;
+                btn.ImageAlign = ContentAlignment.TopCenter;
+                btn.Text = item.Key;
+                btn.TextAlign = ContentAlignment.BottomCenter;
+
+                //클릭 이벤트
+                btn.Click += (sender, e) =>
+                {
+                    Button clicked = sender as Button;
+                    string clickedType = clicked.Tag.ToString();
+                    CheckTrash(clickedType);
+                };
+
+                this.Controls.Add(btn);
+                i++;
             }
         }
 
         // 정답 효과: 흔들림 없이 노란 테두리 잠깐 표시
-        private void ShowCorrectEffect(Button btn)
+        private void ShowCorrectEffect(PictureBox pb)
         {
-            if (btn == null) return;
+            if (pb == null) return;
 
-            yellowBorderButton = btn;   // 노란 테두리 표시 대상 지정
+            yellowBorderPictureBox = pb;   // 노란 테두리 표시 대상 지정
             showYellowBorder = true;       // 노란 테두리 표시 켜기
-            btn.Invalidate();               // 다시 그리기 요청 (테두리 표시 위해)
+            pb.Invalidate();               // 다시 그리기 요청 (테두리 표시 위해)
 
             // 0.3초 후에 노란 테두리 해제용 타이머 생성 및 시작
             System.Windows.Forms.Timer yellowBorderTimer = new System.Windows.Forms.Timer();
@@ -359,32 +336,29 @@ namespace Eco_Quest
         private void YellowBorderTimer_Tick(object sender, EventArgs e)
         {
             System.Windows.Forms.Timer timer = sender as System.Windows.Forms.Timer;
-            if (timer == null)
-            {
-                timer.Stop();
-                timer.Tick -= YellowBorderTimer_Tick;
-                timer.Dispose();
-            }
+            if (timer == null) return;
 
             showYellowBorder = false;                      // 노란 테두리 끄기
-            if (yellowBorderButton != null)
+            if (yellowBorderPictureBox != null)
             {
-                yellowBorderButton.Invalidate();       // 다시 그려서 테두리 제거
-                yellowBorderButton = null;             // 대상 해제
+                yellowBorderPictureBox.Invalidate();       // 다시 그려서 테두리 제거
+                yellowBorderPictureBox = null;             // 대상 해제
             }
+
+            timer.Stop();                                  // 타이머 중지
+            timer.Dispose();                               // 메모리 정리
         }
 
-
-
         // 오답 효과: 좌우 흔들기 + 빨간 테두리
-        private void ShakeAndRedBorder(Button btn)
+        private void ShakeAndRedBorder(PictureBox pb)
         {
-            if (btn == null) return;
+            if (pb == null) return;
 
-            targetButton = btn; // 효과를 줄 대상 설정
-            startX = btn.Location.X; // 현재 X 위치 저장
+            targetPictureBox = pb; // 효과를 줄 대상 설정
+            startX = pb.Location.X; // 현재 X 위치 저장
             shakeCount = 0; // 흔들림 횟수 초기화
             showRedBorder = true; // 테두리 보이게 설정
+            pb.Invalidate(); // 강제로 다시 그리기 요청 (테두리 반영 위해)
 
             timerEffect.Start(); // 흔들기 효과 타이머 시작
         }
@@ -392,54 +366,65 @@ namespace Eco_Quest
         // 흔들기 효과를 만드는 타이머 Tick 이벤트
         private void timerEffect_Tick(object sender, EventArgs e)
         {
-            if (targetButton == null)
-            {
-                timerEffect.Stop();
-                return;
-            }
+            if (targetPictureBox == null) return;
+            // 값이 없을 때 실행 시 오류 방지
 
-            if (shakeCount >= 10) // 흔들기 횟수 제한 (5번, 10번 흔들기)
+            if (shakeCount < 10)
             {
-                timerEffect.Stop();
-                showRedBorder = false;
-                if (targetButton != null)
-                {
-                    targetButton.Location = new Point(startX, targetButton.Location.Y);
-                    targetButton.Invalidate(); // 빨간 테두리 지우기 위해 다시 그리기 요청
-                    targetButton = null;
-                }
+                // 홀수/짝수에 따라 좌우 이동
+                int moveAmount = (shakeCount % 2 == 0) ? 5 : -5;
+                targetPictureBox.Left = startX + moveAmount;
+                shakeCount++;
             }
             else
             {
-                // 좌우 흔들기: 짝수는 오른쪽, 홀수는 왼쪽으로 5픽셀 이동
-                int offset = (shakeCount % 2 == 0) ? 5 : -5;
-                targetButton.Location = new Point(startX + offset, targetButton.Location.Y);
-                targetButton.Invalidate();
-                shakeCount++;
+                // 흔들기 끝나면 위치 복원 및 테두리 제거
+                timerEffect.Stop();
+                targetPictureBox.Left = startX;
+                showRedBorder = false;
+                targetPictureBox.Invalidate(); // 다시 그려서 테두리 제거
+                targetPictureBox = null; // 효과 종료
             }
         }
 
-        // 버튼 Paint 이벤트에서 테두리 그리기
-        private void Button_Paint(object sender, PaintEventArgs e)
+        // 클릭 이벤트 (이거는 다른분거 넣어야해서)
+        private void pictureBoxRecycle1_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            //
+        }
 
-            if (showRedBorder && targetButton == btn)
+        private void pictureBoxRecycle2_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void pictureBoxRecycle3_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void pictureBoxRecycle4_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        // 빨간 테두리 그리는 실제 함수
+        private void DrawRedBorder(PaintEventArgs e, PictureBox pb)
+        {
+            using (Pen pen = new Pen(Color.Red, 5)) // 테두리 굵기5, 빨간색
             {
-                using (Pen pen = new Pen(Color.Red, 5))
-                {
-                    Rectangle rect = new Rectangle(0, 0, btn.Width - 1, btn.Height - 1);
-                    e.Graphics.DrawRectangle(pen, rect);
-                }
+                Rectangle rect = new Rectangle(0, 0, pb.Width - 1, pb.Height - 1);
+                e.Graphics.DrawRectangle(pen, rect); // 테두리 그림
             }
+        }
 
-            if (showYellowBorder && yellowBorderButton == btn)
+        // 노란 테두리 그리는 함수
+        private void DrawYellowBorder(PaintEventArgs e, PictureBox pb)
+        {
+            using (Pen pen = new Pen(Color.Yellow, 5)) // 테두리 굵기5, 노란색
             {
-                using (Pen pen = new Pen(Color.Yellow, 5))
-                {
-                    Rectangle rect = new Rectangle(0, 0, btn.Width - 1, btn.Height - 1);
-                    e.Graphics.DrawRectangle(pen, rect);
-                }
+                Rectangle rect = new Rectangle(0, 0, pb.Width - 1, pb.Height - 1);
+                e.Graphics.DrawRectangle(pen, rect);
             }
         }
     }
