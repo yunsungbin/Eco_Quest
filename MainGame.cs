@@ -187,7 +187,10 @@ namespace Eco_Quest
             if (gameTime <= 0)
             {
                 gameTimer.Stop();
-                MessageBox.Show("게임 종료!\n점수 : " + score);
+                if(score >= 200) MessageBox.Show("게임 종료!\n점수 : " + score + "\nA등급");
+                else if(score >= 150) MessageBox.Show("게임 종료!\n점수 : " + score + "\nB등급");
+                else if (score >= 100) MessageBox.Show("게임 종료!\n점수 : " + score + "\nC등급");
+                else MessageBox.Show("게임 종료!\n점수 : " + score + "\n등급 없음");
                 titleMove();
             }
         }
