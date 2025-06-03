@@ -103,10 +103,10 @@ namespace Eco_Quest
             this.Controls.Add(HardButton);
         }
 
+       
         private void OpenGameForm(string level)
         {
-            MessageBox.Show($"선택한 난이도: {level}");
-            MainGame gameForm = new MainGame();
+            MainGame gameForm = new MainGame(level);
             gameForm.Show();
             this.Hide();
         }
