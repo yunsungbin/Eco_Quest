@@ -69,7 +69,7 @@ namespace Eco_Quest
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-           
+
             // timerEffect 초기화 및 이벤트 연결 (1번 수정 사항)
             timerEffect.Interval = 50; // 흔들림 효과 간격 (50ms)
             timerEffect.Tick += timerEffect_Tick;
@@ -80,7 +80,7 @@ namespace Eco_Quest
             LoadTrashImages();
 
             initUI();
-            CreateButtons();
+            //CreateButtons();
             countDownText.Text = ""; //카운트 다운 텍스트 초기화
 
             //countDownTimer 설정
@@ -92,7 +92,7 @@ namespace Eco_Quest
             gameTimer.Interval = 1000;
             gameTimer.Tick += timer1_Tick;
 
-            
+
         }
 
         //리소스 이미지 로드 및 dictionary에 저장
@@ -110,7 +110,7 @@ namespace Eco_Quest
         {
             trashImage = new PictureBox
             {
-                Location = new Point(100, 300),
+                Location = new Point(350, 400),
                 Size = new Size(100, 100),
                 SizeMode = PictureBoxSizeMode.Zoom
             };
@@ -118,7 +118,7 @@ namespace Eco_Quest
 
             trashLabel = new Label
             {
-                Location = new Point(100, 400),
+                Location = new Point(350, 500),
                 Size = new Size(100, 30),
                 TextAlign = ContentAlignment.MiddleCenter
             };
@@ -126,7 +126,7 @@ namespace Eco_Quest
 
             nextTrashImage = new PictureBox
             {
-                Location = new Point(250, 250),
+                Location = new Point(500, 350),
                 Size = new Size(50, 50),
                 SizeMode = PictureBoxSizeMode.Zoom
             };
@@ -134,8 +134,8 @@ namespace Eco_Quest
 
             nextTrashLabel = new Label
             {
-                Location = new Point(240, 370),
-                Size = new Size(80, 20),
+                Location = new Point(500, 450),
+                Size = new Size(100, 30),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("맑은 고딕", 9, FontStyle.Bold)
             };
@@ -283,7 +283,7 @@ namespace Eco_Quest
             SoundPlayer player = new SoundPlayer("error.wav");
             player.Play();
         }
-        
+
         private void SetButtonImage(Button btn, string imageName, string text)
         {
             object obj = Properties.Resources.ResourceManager.GetObject(imageName);
@@ -311,33 +311,33 @@ namespace Eco_Quest
             }
         }
 
-        //분리수거 버튼 생성
-        private void CreateButtons()
-        {
-            Dictionary<string, string> buttonInfo = new Dictionary<string, string>
-            {
-                { "PlasticBox", "플라스틱" },
-                { "PaperBox", "paper" },
-                { "VinylBox", "vinyl" },
-                { "CanBox", "can" }
-            };
+        ////분리수거 버튼 생성
+        //private void CreateButtons()
+        //{
+        //    Dictionary<string, string> buttonInfo = new Dictionary<string, string>
+        //    {
+        //        { "PlasticBox", "플라스틱" },
+        //        { "PaperBox", "paper" },
+        //        { "VinylBox", "vinyl" },
+        //        { "CanBox", "can" }
+        //    };
 
-            int i = 0;
+        //    int i = 0;
 
-            foreach (var item in buttonInfo)
-            {
-                Button btn = this.Controls.Find(item.Key, true).FirstOrDefault() as Button;
+        //    foreach (var item in buttonInfo)
+        //    {
+        //        Button btn = this.Controls.Find(item.Key, true).FirstOrDefault() as Button;
 
-                if (btn != null)
-                {
-                    SetButtonImage(btn, item.Value, item.Key.Replace("Box", ""));
-                    btn.Location = new Point(50 + i * 200, 100);
-                    i++;
+        //        if (btn != null)
+        //        {
+        //            SetButtonImage(btn, item.Value, item.Key.Replace("Box", ""));
+        //            btn.Location = new Point(50 + i * 200, 100);
+        //            i++;
 
-                    btn.Paint += Button_Paint; //Paint이벤트 연결
-                }
-            }
-        }
+        //            btn.Paint += Button_Paint; //Paint이벤트 연결
+        //        }
+        //    }
+        //}
 
         // 정답 효과: 흔들림 없이 노란 테두리 잠깐 표시
         private void ShowCorrectEffect(Button btn)
