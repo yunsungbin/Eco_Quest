@@ -1,7 +1,5 @@
-using System;
-using System.Drawing; //폰트,색상,위치
-using System.Media; //사운드 재생
-using System.Windows.Forms; //ui요소 사용하려는데 일단 나중에 없애야지
+using System.Media;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Eco_Quest
 {
@@ -12,6 +10,7 @@ namespace Eco_Quest
         private Button NormalButton = new Button();
         private Button HardButton = new Button();
         private Label TitleName = new Label();
+        private Button GameEndButton = new Button();
 
 
         public Form1()
@@ -77,7 +76,7 @@ namespace Eco_Quest
             EasyButton.Location = new Point(x, yStart);
             EasyButton.Click += (s, e) => // 클릭 이벤트 설정
             {
-                PlayClickSound(); 
+                PlayClickSound();
                 MessageBox.Show("현재 제작중입니다.");
             };
             this.Controls.Add(EasyButton);
@@ -103,6 +102,17 @@ namespace Eco_Quest
                 MessageBox.Show("현재 제작중입니다.");
             };
             this.Controls.Add(HardButton);
+
+            // 게임 종료 버튼
+            GameEndButton.Size = new Size(90,30);
+            GameEndButton.Text = "게임종료";
+            GameEndButton.Location = new Point(20, 20);
+            GameEndButton.Click += (s, e) =>
+            {
+                Application.Exit();
+            };
+            this.Controls.Add(GameEndButton);
+
         }
 
         private void OpenGameForm(string level)
@@ -118,24 +128,23 @@ namespace Eco_Quest
         {
             SoundPlayer player = new SoundPlayer("click");
             player.Play();
-       
+
         }
 
         private void NormalButton_Click(object sender, EventArgs e)
         {
             SoundPlayer player = new SoundPlayer("click");
             player.Play();
-           
+
         }
 
         private void HardButton_Click(object sender, EventArgs e)
         {
             SoundPlayer player = new SoundPlayer("click");
             player.Play();
-           
+
         }
 
-
+     
     }
-
 }
