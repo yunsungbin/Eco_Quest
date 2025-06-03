@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGame));
             title = new Button();
             Limit = new System.Windows.Forms.Timer(components);
             PlasticBox = new Button();
@@ -58,9 +59,10 @@
             // 
             // PlasticBox
             // 
-            PlasticBox.Location = new Point(54, 95);
+            PlasticBox.Image = (Image)resources.GetObject("PlasticBox.Image");
+            PlasticBox.Location = new Point(41, 96);
             PlasticBox.Name = "PlasticBox";
-            PlasticBox.Size = new Size(150, 240);
+            PlasticBox.Size = new Size(182, 295);
             PlasticBox.TabIndex = 1;
             PlasticBox.Text = "plastic";
             PlasticBox.UseVisualStyleBackColor = true;
@@ -68,9 +70,10 @@
             // 
             // paperBox
             // 
-            paperBox.Location = new Point(249, 95);
+            paperBox.Image = (Image)resources.GetObject("paperBox.Image");
+            paperBox.Location = new Point(236, 96);
             paperBox.Name = "paperBox";
-            paperBox.Size = new Size(150, 240);
+            paperBox.Size = new Size(169, 295);
             paperBox.TabIndex = 2;
             paperBox.Text = "paper";
             paperBox.UseVisualStyleBackColor = true;
@@ -78,18 +81,20 @@
             // 
             // VinylBox
             // 
-            VinylBox.Location = new Point(450, 95);
+            VinylBox.Image = (Image)resources.GetObject("VinylBox.Image");
+            VinylBox.Location = new Point(431, 96);
             VinylBox.Name = "VinylBox";
-            VinylBox.Size = new Size(150, 240);
+            VinylBox.Size = new Size(178, 295);
             VinylBox.TabIndex = 3;
             VinylBox.Text = "vinyl";
             VinylBox.UseVisualStyleBackColor = true;
             // 
             // CanBox
             // 
-            CanBox.Location = new Point(647, 95);
+            CanBox.Image = (Image)resources.GetObject("CanBox.Image");
+            CanBox.Location = new Point(627, 96);
             CanBox.Name = "CanBox";
-            CanBox.Size = new Size(150, 240);
+            CanBox.Size = new Size(175, 295);
             CanBox.TabIndex = 4;
             CanBox.Text = "can";
             CanBox.UseVisualStyleBackColor = true;
