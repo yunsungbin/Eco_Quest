@@ -10,6 +10,7 @@ namespace Eco_Quest
         private Button NormalButton = new Button();
         private Button HardButton = new Button();
         private Label TitleName = new Label();
+        private Button GameEndButton = new Button();
 
 
         public Form1()
@@ -101,6 +102,17 @@ namespace Eco_Quest
                 MessageBox.Show("현재 제작중입니다.");
             };
             this.Controls.Add(HardButton);
+
+            // 게임 종료 버튼
+            GameEndButton.Size = new Size(90,30);
+            GameEndButton.Text = "게임종료";
+            GameEndButton.Location = new Point(20, 20);
+            GameEndButton.Click += (s, e) =>
+            {
+                Application.Exit();
+            };
+            this.Controls.Add(GameEndButton);
+
         }
 
         private void OpenGameForm(string level)
@@ -133,6 +145,6 @@ namespace Eco_Quest
 
         }
 
-
+     
     }
 }
