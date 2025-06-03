@@ -88,6 +88,7 @@
             VinylBox.TabIndex = 3;
             VinylBox.Text = "vinyl";
             VinylBox.UseVisualStyleBackColor = true;
+            VinylBox.Click += VinylBox_Click;
             // 
             // CanBox
             // 
@@ -98,6 +99,7 @@
             CanBox.TabIndex = 4;
             CanBox.Text = "can";
             CanBox.UseVisualStyleBackColor = true;
+            CanBox.Click += CanBox_Click;
             // 
             // timer
             // 
