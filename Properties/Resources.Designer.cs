@@ -63,9 +63,9 @@ namespace Eco_Quest.Properties {
         /// <summary>
         ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static byte[] 플라스틱 {
+        internal static byte[] plastic_bottle {
             get {
-                object obj = ResourceManager.GetObject("플라스틱", resourceCulture);
+                object obj = ResourceManager.GetObject("plastic_bottle", resourceCulture);
                 return ((byte[])(obj));
             }
         }
