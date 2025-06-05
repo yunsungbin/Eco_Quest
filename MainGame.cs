@@ -55,7 +55,7 @@ namespace Eco_Quest
         //쓰레기 이름과 분리수거 종류 매핑(key: 이미지, value : 종류)
         private Dictionary<string, string> trashList = new Dictionary<string, string>
         {
-            {"plastic_bottle", "플라스틱"},
+            {"plastic_bottles", "플라스틱"},
             {"straw", "플라스틱"},
             {"paper_cup", "종이"},
             {"newspaper", "종이"},
@@ -96,7 +96,10 @@ namespace Eco_Quest
             gameTimer.Interval = 1000;
             gameTimer.Tick += timer1_Tick;
 
-
+            PlasticBox.Paint += Button_Paint;
+            paperBox.Paint += Button_Paint;
+            VinylBox.Paint += Button_Paint;
+            CanBox.Paint += Button_Paint;
         }
 
         //리소스 이미지 로드 및 dictionary에 저장
