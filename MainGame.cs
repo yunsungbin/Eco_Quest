@@ -28,8 +28,9 @@ namespace Eco_Quest
 
         private string trashType;
         private string nextTrashType;
-
-        int score = 0;
+        // — 점수 시스템 관련 필드 추가 — 
+        private int score = 0;
+        private string difficulty;  // 난이도 정보를 저장할 필드
         int countDown = 3;
         int gameTime = 90; //제한 시간(초)
 
@@ -65,13 +66,23 @@ namespace Eco_Quest
         //키와 매핑된 이미지 저장(리소스에서 가져옴)
         private Dictionary<string, Image> trashImages = new Dictionary<string, Image>();
 
-        public MainGame()
+        public MainGame(string level)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            difficulty = level;
+
+            scoreLabel_Click(null, null);
+
+            countDownTimer.Interval = 1000;
+            countDownTimer.Tick += CountDownTimer_Tick;
+            countDownTimer.Start();
 
             // timerEffect 초기화 및 이벤트 연결 (1번 수정 사항)
-            timerEffect.Interval = 50; // 흔들림 효과 간격 (50ms)
+            gameTimer.Interval = 1000; // 1초마다 timer1_Tick 호출
+            gameTimer.Tick += timer1_Tick;
+
+            timerEffect.Interval = 50;
             timerEffect.Tick += timerEffect_Tick;
         }
 
@@ -252,7 +263,7 @@ namespace Eco_Quest
             if (clickType == correctType)
             {
                 score += 10;
-                scoreLabel.Text = "점수 : " + score;
+                scoreLabel_Click(null, null);
                 ShowTrash();
 
                 ShowCorrectEffect(clickedButton);
@@ -276,15 +287,29 @@ namespace Eco_Quest
         //정답소리 재생함수
         private void PlayCorrectSound()
         {
-            SoundPlayer player = new SoundPlayer("correct.wav");
-            player.Play();
+            try
+            {
+                SoundPlayer player = new SoundPlayer("correct.wav");
+                player.Play();
+            }
+            catch
+            {
+                // 사운드 파일이 없거나 오류 시 무시
+            }
         }
 
         //오답 소리 재생 함수
         private void PlayErrorSound()
         {
-            SoundPlayer player = new SoundPlayer("error.wav");
-            player.Play();
+            try
+            {
+                SoundPlayer player = new SoundPlayer("error.wav");
+                player.Play();
+            }
+            catch
+            {
+                // 사운드 파일이 없거나 오류 시 무시
+            }
         }
 
         private void SetButtonImage(Button btn, string imageName, string text)
@@ -444,6 +469,10 @@ namespace Eco_Quest
                     e.Graphics.DrawRectangle(pen, rect);
                 }
             }
+        }
+        private void scoreLabel_Click(object sender, EventArgs e)
+        {
+            scoreLabel.Text = "점수 : " + score;
         }
     }
 }
