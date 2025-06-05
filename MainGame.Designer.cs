@@ -41,6 +41,8 @@
             countDownText = new Label();
             CountDownTimer = new System.Windows.Forms.Timer(components);
             scoreLabel = new Label();
+            timePanel = new Panel();
+            timePanel.SuspendLayout();
             SuspendLayout();
             // 
             // title
@@ -120,10 +122,10 @@
             // countDownText
             // 
             countDownText.AutoSize = true;
-            countDownText.Font = new Font("맑은 고딕", 12F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            countDownText.Location = new Point(411, 67);
+            countDownText.Font = new Font("맑은 고딕", 20F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            countDownText.Location = new Point(382, 245);
             countDownText.Name = "countDownText";
-            countDownText.Size = new Size(28, 32);
+            countDownText.Size = new Size(46, 54);
             countDownText.TabIndex = 7;
             countDownText.Text = "3";
             countDownText.TextAlign = ContentAlignment.MiddleCenter;
@@ -141,13 +143,21 @@
             scoreLabel.TabIndex = 8;
             scoreLabel.Text = "점수 : 0";
             // 
+            // timePanel
+            // 
+            timePanel.Controls.Add(countDownText);
+            timePanel.Location = new Point(12, 12);
+            timePanel.Name = "timePanel";
+            timePanel.Size = new Size(819, 580);
+            timePanel.TabIndex = 9;
+            // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(843, 604);
+            Controls.Add(timePanel);
             Controls.Add(scoreLabel);
-            Controls.Add(countDownText);
             Controls.Add(progressBar1);
             Controls.Add(timer);
             Controls.Add(CanBox);
@@ -158,6 +168,8 @@
             Name = "MainGame";
             Text = "MainGame";
             Load += MainGame_Load;
+            timePanel.ResumeLayout(false);
+            timePanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -175,5 +187,6 @@
         private Label countDownText;
         private System.Windows.Forms.Timer CountDownTimer;
         private Label scoreLabel;
+        private Panel timePanel;
     }
 }
