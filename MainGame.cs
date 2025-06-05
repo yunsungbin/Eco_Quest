@@ -55,7 +55,7 @@ namespace Eco_Quest
         //쓰레기 이름과 분리수거 종류 매핑(key: 이미지, value : 종류)
         private Dictionary<string, string> trashList = new Dictionary<string, string>
         {
-            {"plastic_bottles", "플라스틱"},
+            {"plastic_bottle", "플라스틱"},
             {"straw", "플라스틱"},
             {"paper_cup", "종이"},
             {"newspaper", "종이"},
@@ -73,14 +73,6 @@ namespace Eco_Quest
             difficulty = level;
 
             scoreLabel_Click(null, null);
-
-            countDownTimer.Interval = 1000;
-            countDownTimer.Tick += CountDownTimer_Tick;
-            countDownTimer.Start();
-
-            // timerEffect 초기화 및 이벤트 연결 (1번 수정 사항)
-            gameTimer.Interval = 1000; // 1초마다 timer1_Tick 호출
-            gameTimer.Tick += timer1_Tick;
 
             timerEffect.Interval = 50;
             timerEffect.Tick += timerEffect_Tick;
