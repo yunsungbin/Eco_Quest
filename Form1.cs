@@ -104,7 +104,7 @@ namespace Eco_Quest
             this.Controls.Add(HardButton);
 
             // 게임 종료 버튼
-            GameEndButton.Size = new Size(90,30);
+            GameEndButton.Size = new Size(100,30);
             GameEndButton.Text = "게임종료";
             GameEndButton.Location = new Point(20, 20);
             GameEndButton.Click += (s, e) =>
