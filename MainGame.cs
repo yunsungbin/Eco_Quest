@@ -199,7 +199,8 @@ namespace Eco_Quest
             if (gameTime <= 0)
             {
                 gameTimer.Stop();
-                if(score >= 200) MessageBox.Show("게임 종료!\n점수 : " + score + "\nA등급");
+                PlayEndGameSound();
+                if (score >= 200) MessageBox.Show("게임 종료!\n점수 : " + score + "\nA등급");
                 else if(score >= 150) MessageBox.Show("게임 종료!\n점수 : " + score + "\nB등급");
                 else if (score >= 100) MessageBox.Show("게임 종료!\n점수 : " + score + "\nC등급");
                 else MessageBox.Show("게임 종료!\n점수 : " + score + "\n등급 없음");
@@ -311,6 +312,13 @@ namespace Eco_Quest
             {
                 // 사운드 파일이 없거나 오류 시 무시
             }
+        }
+
+        //끝난 소리 재생
+        private void PlayEndGameSound()
+        {
+            SoundPlayer player = new SoundPlayer("GameOver.wav");
+            player.Play();
         }
 
         private void SetButtonImage(Button btn, string imageName, string text)
