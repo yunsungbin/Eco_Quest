@@ -118,7 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="blueCan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_02.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="blue_vinyl_bag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_04.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Can" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CanBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_09.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="envelope" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_08.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="paper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_06.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PaperBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_10.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="paperes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_07.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PlasticBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Plastic0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="plastic_bottle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\플라스틱.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="redCan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_01.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="titleImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143336651.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="trash_vinyl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_05.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VinylBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_11.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vinyl_bag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KakaoTalk_20250605_143142346_03.jpg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

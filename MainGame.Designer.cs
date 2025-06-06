@@ -66,7 +66,6 @@
             PlasticBox.Name = "PlasticBox";
             PlasticBox.Size = new Size(182, 295);
             PlasticBox.TabIndex = 1;
-            PlasticBox.Text = "plastic";
             PlasticBox.UseVisualStyleBackColor = true;
             PlasticBox.Click += EcoBox_1_Click;
             // 
@@ -77,7 +76,6 @@
             paperBox.Name = "paperBox";
             paperBox.Size = new Size(169, 295);
             paperBox.TabIndex = 2;
-            paperBox.Text = "paper";
             paperBox.UseVisualStyleBackColor = true;
             paperBox.Click += paperBox_Click;
             // 
@@ -88,7 +86,6 @@
             VinylBox.Name = "VinylBox";
             VinylBox.Size = new Size(178, 295);
             VinylBox.TabIndex = 3;
-            VinylBox.Text = "vinyl";
             VinylBox.UseVisualStyleBackColor = true;
             VinylBox.Click += VinylBox_Click;
             // 
@@ -99,7 +96,6 @@
             CanBox.Name = "CanBox";
             CanBox.Size = new Size(175, 295);
             CanBox.TabIndex = 4;
-            CanBox.Text = "can";
             CanBox.UseVisualStyleBackColor = true;
             CanBox.Click += CanBox_Click;
             // 

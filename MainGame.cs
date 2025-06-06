@@ -53,14 +53,18 @@ namespace Eco_Quest
 
 
         //쓰레기 이름과 분리수거 종류 매핑(key: 이미지, value : 종류)
-        private Dictionary<string, string> trashList = new Dictionary<string, string>
+        private Dictionary<string, (string category, string name)> trashList = new Dictionary<string, (string, string)>
         {
-            {"plastic_bottles", "플라스틱"},
-            {"straw", "플라스틱"},
-            {"paper_cup", "종이"},
-            {"newspaper", "종이"},
-            {"can", "캔"},
-            {"vinyl_bag", "비닐"}
+            {"plastic_bottle", ("플라스틱", "플라스틱 페트병")},
+            {"paper", ("종이", "신문지")},
+            {"paperes", ("종이", "종이 뭉치")},
+            {"envelope", ("종이", "봉투")},
+            {"Can", ("캔", "알루미늄 캔")},
+            {"blueCan", ("캔", "음료 캔")},
+            {"redCan", ("캔", "주스 캔")},
+            {"vinyl_bag", ("비닐", "비닐봉투")},
+            {"blue_vinyl_bag", ("비닐", "파란 비닐봉투")},
+            {"trash_vinyl", ("비닐", "쓰레기 비닐")}
         };
 
         //키와 매핑된 이미지 저장(리소스에서 가져옴)
@@ -84,6 +88,7 @@ namespace Eco_Quest
 
             timePanel.Show();
             initUI();
+            CreateButtons();
             //CreateButtons();
             countDownText.Text = ""; //카운트 다운 텍스트 초기화
 
@@ -108,7 +113,20 @@ namespace Eco_Quest
             foreach (var item in trashList)
             {
                 // 리소스 등록 필요 (파일명과 키 일치)
-                trashImages[item.Key] = (Image)Properties.Resources.ResourceManager.GetObject(item.Key);
+                object res = Properties.Resources.ResourceManager.GetObject(item.Key);
+
+                if (res is byte[] bytes)
+                {
+                    using (MemoryStream ms = new MemoryStream(bytes))
+                    {
+                        trashImages[item.Key] = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"리소스 '{item.Key}'는 byte[]가 아닙니다.");
+                }
+
             }
         }
 
@@ -125,15 +143,15 @@ namespace Eco_Quest
 
             trashLabel = new Label
             {
-                Location = new Point(350, 500),
-                Size = new Size(100, 30),
+                Location = new Point(300, 500),
+                Size = new Size(200, 30),
                 TextAlign = ContentAlignment.MiddleCenter
             };
             this.Controls.Add(trashLabel);
 
             nextTrashImage = new PictureBox
             {
-                Location = new Point(500, 350),
+                Location = new Point(500, 400),
                 Size = new Size(50, 50),
                 SizeMode = PictureBoxSizeMode.Zoom
             };
@@ -141,8 +159,8 @@ namespace Eco_Quest
 
             nextTrashLabel = new Label
             {
-                Location = new Point(500, 450),
-                Size = new Size(100, 30),
+                Location = new Point(425, 450),
+                Size = new Size(200, 30),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("맑은 고딕", 9, FontStyle.Bold)
             };
@@ -159,7 +177,8 @@ namespace Eco_Quest
             var randKey = key[rand.Next(key.Count)];
             nextTrashType = randKey;
             nextTrashImage.Image = trashImages[nextTrashType];
-            nextTrashLabel.Text = trashList[nextTrashType];
+            var info = trashList[nextTrashType];
+            nextTrashLabel.Text = info.name;
         }
 
         //현재 쓰레기로 교체
@@ -167,7 +186,8 @@ namespace Eco_Quest
         {
             trashType = nextTrashType;
             trashImage.Image = trashImages[trashType];
-            trashLabel.Text = trashList[trashType];
+            var info = trashList[trashType];
+            trashLabel.Text = info.name;
 
             NextTrash();
         }
@@ -255,7 +275,7 @@ namespace Eco_Quest
         //쓰레기통 버튼 클릭 시
         private void CheckTrash(string clickType, Button clickedButton)
         {
-            string correctType = trashList[trashType];
+            string correctType = trashList[trashType].category;
 
             if (clickType == correctType)
             {
@@ -335,41 +355,44 @@ namespace Eco_Quest
 
             if (img != null)
             {
-                btn.Image = img;
-                //btn.Text = text;
-                btn.ImageAlign = ContentAlignment.MiddleLeft;
-                //btn.TextAlign = ContentAlignment.MiddleRight;
+                // 버튼 크기 설정
                 btn.Size = new Size(150, 240);
+
+                // 이미지 크기 조정
+                Image resizedImg = new Bitmap(img, btn.Size);
+
+                btn.Image = resizedImg;
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
 
         ////분리수거 버튼 생성
-        //private void CreateButtons()
-        //{
-        //    Dictionary<string, string> buttonInfo = new Dictionary<string, string>
-        //    {
-        //        { "PlasticBox", "플라스틱" },
-        //        { "PaperBox", "paper" },
-        //        { "VinylBox", "vinyl" },
-        //        { "CanBox", "can" }
-        //    };
+        private void CreateButtons()
+        {
+            Dictionary<string, string> buttonInfo = new Dictionary<string, string>
+            {
+                { "PlasticBox", "플라스틱" },
+                { "PaperBox", "종이" },
+                { "VinylBox", "비닐" },
+                { "CanBox", "캔" }
+            };
 
-        //    int i = 0;
+            int i = 0;
 
-        //    foreach (var item in buttonInfo)
-        //    {
-        //        Button btn = this.Controls.Find(item.Key, true).FirstOrDefault() as Button;
+            foreach (var item in buttonInfo)
+            {
+                Button btn = this.Controls.Find(item.Key, true).FirstOrDefault() as Button;
 
-        //        if (btn != null)
-        //        {
-        //            SetButtonImage(btn, item.Value, item.Key.Replace("Box", ""));
-        //            btn.Location = new Point(50 + i * 200, 100);
-        //            i++;
+                if (btn != null)
+                {
+                    SetButtonImage(btn, item.Key, item.Value);
+                    btn.Location = new Point(50 + i * 200, 100);
+                    btn.Paint += Button_Paint; //Paint이벤트 연결
+                    i++;
 
-        //            btn.Paint += Button_Paint; //Paint이벤트 연결
-        //        }
-        //    }
-        //}
+                }
+            }
+        }
 
         // 정답 효과: 흔들림 없이 노란 테두리 잠깐 표시
         private void ShowCorrectEffect(Button btn)
