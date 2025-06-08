@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGame));
-            title = new Button();
             Limit = new System.Windows.Forms.Timer(components);
             PlasticBox = new Button();
             paperBox = new Button();
@@ -44,16 +43,6 @@
             timePanel = new Panel();
             timePanel.SuspendLayout();
             SuspendLayout();
-            // 
-            // title
-            // 
-            title.Location = new Point(12, 558);
-            title.Name = "title";
-            title.Size = new Size(112, 34);
-            title.TabIndex = 0;
-            title.Text = "title";
-            title.UseVisualStyleBackColor = true;
-            title.Click += button1_Click;
             // 
             // Limit
             // 
@@ -160,7 +149,6 @@
             Controls.Add(VinylBox);
             Controls.Add(paperBox);
             Controls.Add(PlasticBox);
-            Controls.Add(title);
             Name = "MainGame";
             Text = "MainGame";
             Load += MainGame_Load;
@@ -171,8 +159,6 @@
         }
 
         #endregion
-
-        private Button title;
         private System.Windows.Forms.Timer Limit;
         private Button PlasticBox;
         private Button paperBox;

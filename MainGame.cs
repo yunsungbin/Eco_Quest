@@ -32,7 +32,8 @@ namespace Eco_Quest
         private int score = 0;
         private string difficulty;  // 난이도 정보를 저장할 필드
         int countDown = 3;
-        int gameTime = 90; //제한 시간(초)
+        int totalTime = 90; //제한 시간(초)
+        int gameTime; //현재 시간
 
         // 흔들림+빨간 테두리 효과 타이머
         private System.Windows.Forms.Timer timerEffect = new System.Windows.Forms.Timer();
@@ -70,6 +71,8 @@ namespace Eco_Quest
         //키와 매핑된 이미지 저장(리소스에서 가져옴)
         private Dictionary<string, Image> trashImages = new Dictionary<string, Image>();
 
+        Dictionary<string, Point> buttonPositions = new Dictionary<string, Point>();
+
         public MainGame(string level)
         {
             InitializeComponent();
@@ -80,6 +83,10 @@ namespace Eco_Quest
 
             timerEffect.Interval = 50;
             timerEffect.Tick += timerEffect_Tick;
+
+            gameTime = totalTime;
+            progressBar1.Maximum = totalTime;
+            progressBar1.Value = totalTime;
         }
 
         private void MainGame_Load(object sender, EventArgs e)
@@ -192,11 +199,6 @@ namespace Eco_Quest
             NextTrash();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            titleMove();
-        }
-
         private void titleMove()
         {
             Form1 title = new Form1();
@@ -229,6 +231,10 @@ namespace Eco_Quest
             int sec = gameTime % 60;
 
             timer.Text = min + " : " + sec;
+            if (gameTime >= 0)
+                progressBar1.Value = gameTime;
+            else
+                progressBar1.Value = 0;
         }
 
         private void EcoBox_1_Click(object sender, EventArgs e)
@@ -267,6 +273,7 @@ namespace Eco_Quest
             {
                 countDownText.Text = "";
                 countDownTimer.Stop();
+                UpdateTime();
                 gameTimer.Start();
                 timePanel.Hide();
             }
@@ -292,6 +299,7 @@ namespace Eco_Quest
                 gameTime -= 5;
                 if (gameTime < 0) gameTime = 0;
 
+                ResetButtonPosition();
                 ShakeAndRedBorder(clickedButton);
 
                 PlayErrorSound(); //오답 소리 재생
@@ -388,8 +396,20 @@ namespace Eco_Quest
                     SetButtonImage(btn, item.Key, item.Value);
                     btn.Location = new Point(50 + i * 200, 100);
                     btn.Paint += Button_Paint; //Paint이벤트 연결
+                    buttonPositions[btn.Name] = btn.Location;
                     i++;
+                }
+            }
+        }
 
+        private void ResetButtonPosition()
+        {
+            foreach(var item in buttonPositions)
+            {
+                Button btn = this.Controls.Find(item.Key, true).FirstOrDefault() as Button;
+                if(btn != null)
+                {
+                    btn.Location = item.Value;
                 }
             }
         }
