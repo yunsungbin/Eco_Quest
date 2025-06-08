@@ -17,6 +17,7 @@ namespace Eco_Quest
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            TitleBackGround();
             InitializeGameTitleUI();
 
             //폼 크기가 바뀔 때마다 자동으로 위치 계산
@@ -54,58 +55,69 @@ namespace Eco_Quest
         private void InitializeGameTitleUI() // 제목과 버튼들을 초기화하는 메서드
         {
             // 제목 라벨
-            TitleName.Text = "Eco-Quest";
+            TitleName.Text = "Eco Quest";
             TitleName.Font = new Font("굴림", 20, FontStyle.Bold); // 글꼴: 굴림, 크기: 20, 굵게
+            TitleName.BackColor = Color.Transparent;
+            TitleName.ForeColor = Color.DarkGreen;
             TitleName.AutoSize = true; // 텍스트 길이에 따라 크기 자동 조정
             TitleName.Top = 100;
 
-            // 제목 가운데 정렬
-            TitleName.Left = (this.ClientSize.Width - TitleName.Width) / 2;
-
             // 폼에 추가하기
             this.Controls.Add(TitleName);
+
+            // 제목 가운데 정렬
+            TitleName.Left = (this.ClientSize.Width - TitleName.Width) / 2;
 
             // 초보,중수,고수의 버튼 크기 조절
             int w = 100, h = 40;
             int x = (this.ClientSize.Width - w) / 2;
             int yStart = TitleName.Bottom + 100;
 
+            // 공통 스타일 적용 메서드
+            void StyleButton(Button btn, string text, Color backColor, int yOffset)
+            {
+                btn.Size = new Size(w, h);
+                btn.Text = text;
+                btn.BackColor = backColor;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.Font = new Font("굴림", 11, FontStyle.Bold);
+                btn.Location = new Point(x, yStart + yOffset);
+                this.Controls.Add(btn);
+            }
+
             // 왕초보 버튼
-            EasyButton.Size = new Size(w, h);
-            EasyButton.Text = "왕초보";
-            EasyButton.Location = new Point(x, yStart);
-            EasyButton.Click += (s, e) => // 클릭 이벤트 설정
+            StyleButton(EasyButton, "왕초보", Color.Gray, 0);
+            EasyButton.Click += (s, e) =>
             {
                 PlayClickSound();
                 MessageBox.Show("현재 제작중입니다.");
             };
-            this.Controls.Add(EasyButton);
 
             // 중수 버튼
-            NormalButton.Size = new Size(w, h);
-            NormalButton.Text = "중수";
-            NormalButton.Location = new Point(x, yStart + 100);
+            StyleButton(NormalButton, "중수", Color.FromArgb(30, 100, 200), 60);
             NormalButton.Click += (s, e) =>
             {
                 PlayClickSound();
-                OpenGameForm("중수"); // 게임 화면 열기
+                OpenGameForm("중수");
             };
-            this.Controls.Add(NormalButton);
 
             // 고수 버튼
-            HardButton.Size = new Size(w, h);
-            HardButton.Text = "고수";
-            HardButton.Location = new Point(x, yStart + 200);
+            StyleButton(HardButton, "고수", Color.FromArgb(0, 130, 60), 120);
             HardButton.Click += (s, e) =>
             {
                 PlayClickSound();
                 MessageBox.Show("현재 제작중입니다.");
             };
-            this.Controls.Add(HardButton);
 
             // 게임 종료 버튼
-            GameEndButton.Size = new Size(100,30);
+            GameEndButton.Size = new Size(100, 30);
             GameEndButton.Text = "게임종료";
+            GameEndButton.BackColor = Color.Black; // 반투명 흰색
+            GameEndButton.ForeColor = Color.White;
+            GameEndButton.FlatStyle = FlatStyle.Flat;
+            GameEndButton.FlatAppearance.BorderSize = 0;
+            GameEndButton.Font = new Font("굴림", 9, FontStyle.Bold);
             GameEndButton.Location = new Point(20, 20);
             GameEndButton.Click += (s, e) =>
             {
@@ -145,6 +157,18 @@ namespace Eco_Quest
 
         }
 
+        private void TitleBackGround()
+        {
+            byte[] image = Properties.Resources.titleImage;
+
+            using(MemoryStream ms = new MemoryStream(image))
+            {
+                Image img = Image.FromStream(ms);
+
+                this.BackgroundImage = img;
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+        }
      
     }
 }

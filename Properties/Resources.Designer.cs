@@ -103,6 +103,16 @@ namespace Eco_Quest.Properties {
         /// <summary>
         ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static byte[] disposable_cups {
+            get {
+                object obj = ResourceManager.GetObject("disposable_cups", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static byte[] envelope {
             get {
                 object obj = ResourceManager.GetObject("envelope", resourceCulture);
@@ -143,9 +153,9 @@ namespace Eco_Quest.Properties {
         /// <summary>
         ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static byte[] plastic_bottle {
+        internal static byte[] plastic_bag {
             get {
-                object obj = ResourceManager.GetObject("plastic_bottle", resourceCulture);
+                object obj = ResourceManager.GetObject("plastic_bag", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -206,6 +216,16 @@ namespace Eco_Quest.Properties {
         internal static byte[] VinylBox {
             get {
                 object obj = ResourceManager.GetObject("VinylBox", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] waterbottle {
+            get {
+                object obj = ResourceManager.GetObject("waterbottle", resourceCulture);
                 return ((byte[])(obj));
             }
         }
