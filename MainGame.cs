@@ -71,6 +71,9 @@ namespace Eco_Quest
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             difficulty = level;
+            this.KeyPreview = true;                    // ← 폼이 키를 먼저 받도록
+            this.KeyDown += MainGame_KeyDown;          // ← ESC 처리용 핸들러 연결
+
 
             scoreLabel_Click(null, null);
 
@@ -84,6 +87,42 @@ namespace Eco_Quest
 
             timerEffect.Interval = 50;
             timerEffect.Tick += timerEffect_Tick;
+        }
+        /// <summary>
+        /// ESC 키를 누르면 타이틀로 돌아갈지 물어보고, 예→점수 표시 후 타이틀, 아니오→타이머 재시작
+        /// </summary>
+        private void MainGame_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                // 1) 게임 타이머 일시정지
+                gameTimer.Stop();
+
+                // (카운트다운 타이머는 이미 종료된 상태일 테니 건드리지 않아도 되고,
+                //  혹시 effect 타이머 돌아가고 있으면 멈춰 두세요.)
+                timerEffect.Stop();
+
+                // 2) 돌아갈지 물어보기
+                var result = MessageBox.Show(
+                    "타이틀 화면으로 돌아가시겠습니까?",
+                    "게임 일시정지",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // 3) 예를 누르면 점수 표시 후 타이틀로
+                    MessageBox.Show($"현재 점수: {score}", "게임 종료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    titleMove();   // Form1으로 돌아가는 기존 메서드
+                }
+                else
+                {
+                    // 4) 아니오를 누르면 다시 타이머 재시작
+                    gameTimer.Start();
+                    // effect 타이머는 정답/오답 효과 중이었으면 다시 켜 주세요
+                    // timerEffect.Start();
+                }
+            }
         }
 
         private void MainGame_Load(object sender, EventArgs e)
@@ -198,7 +237,11 @@ namespace Eco_Quest
             if (gameTime <= 0)
             {
                 gameTimer.Stop();
-                MessageBox.Show("게임 종료!\n점수 : " + score);
+                PlayEndGameSound();
+                if (score >= 200) MessageBox.Show("게임 종료!\n점수 : " + score + "\nA등급");
+                else if (score >= 150) MessageBox.Show("게임 종료!\n점수 : " + score + "\nB등급");
+                else if (score >= 100) MessageBox.Show("게임 종료!\n점수 : " + score + "\nC등급");
+                else MessageBox.Show("게임 종료!\n점수 : " + score + "\n등급 없음");
                 titleMove();
             }
         }
@@ -470,6 +513,11 @@ namespace Eco_Quest
         private void scoreLabel_Click(object sender, EventArgs e)
         {
             scoreLabel.Text = "점수 : " + score;
+        }
+
+        private void timePanel_Paint(object sender, PaintEventArgs e)
+        {
+                
         }
     }
 }
