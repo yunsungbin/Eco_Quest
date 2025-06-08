@@ -56,16 +56,18 @@ namespace Eco_Quest
         //쓰레기 이름과 분리수거 종류 매핑(key: 이미지, value : 종류)
         private Dictionary<string, (string category, string name)> trashList = new Dictionary<string, (string, string)>
         {
-            {"plastic_bottle", ("플라스틱", "플라스틱 페트병")},
-            {"paper", ("종이", "신문지")},
-            {"paperes", ("종이", "종이 뭉치")},
-            {"envelope", ("종이", "봉투")},
-            {"Can", ("캔", "알루미늄 캔")},
-            {"blueCan", ("캔", "음료 캔")},
-            {"redCan", ("캔", "주스 캔")},
-            {"vinyl_bag", ("비닐", "비닐봉투")},
-            {"blue_vinyl_bag", ("비닐", "파란 비닐봉투")},
-            {"trash_vinyl", ("비닐", "쓰레기 비닐")}
+            {"plastic_bag", ("plastic", "플라스틱 가방")},
+            {"disposable_cups", ("plastic", "플라스틱 컵")},
+            {"waterbottle", ("plastic", "페트병")},
+            {"paper", ("paper", "신문지")},
+            {"paperes", ("paper", "종이 뭉치")},
+            {"envelope", ("paper", "봉투")},
+            {"Can", ("can", "알루미늄 캔")},
+            {"blueCan", ("can", "음료 캔")},
+            {"redCan", ("can", "주스 캔")},
+            {"vinyl_bag", ("vinyl", "비닐봉투")},
+            {"blue_vinyl_bag", ("vinyl", "파란 비닐봉투")},
+            {"trash_vinyl", ("vinyl", "쓰레기 비닐")}
         };
 
         //키와 매핑된 이미지 저장(리소스에서 가져옴)
@@ -76,6 +78,7 @@ namespace Eco_Quest
         public MainGame(string level)
         {
             InitializeComponent();
+            timePanel.BringToFront();
             this.StartPosition = FormStartPosition.CenterScreen;
             difficulty = level;
 
@@ -87,6 +90,9 @@ namespace Eco_Quest
             gameTime = totalTime;
             progressBar1.Maximum = totalTime;
             progressBar1.Value = totalTime;
+
+            this.KeyPreview = true;  // 폼이 키 입력을 먼저 받도록 설정
+            this.KeyDown += MainGame_KeyDown;
         }
 
         private void MainGame_Load(object sender, EventArgs e)
@@ -217,8 +223,8 @@ namespace Eco_Quest
             {
                 gameTimer.Stop();
                 PlayEndGameSound();
-                if (score >= 200) MessageBox.Show("게임 종료!\n점수 : " + score + "\nA등급");
-                else if(score >= 150) MessageBox.Show("게임 종료!\n점수 : " + score + "\nB등급");
+                if (score >= 300) MessageBox.Show("게임 종료!\n점수 : " + score + "\nA등급");
+                else if (score >= 200) MessageBox.Show("게임 종료!\n점수 : " + score + "\nB등급");
                 else if (score >= 100) MessageBox.Show("게임 종료!\n점수 : " + score + "\nC등급");
                 else MessageBox.Show("게임 종료!\n점수 : " + score + "\n등급 없음");
                 titleMove();
@@ -240,25 +246,25 @@ namespace Eco_Quest
         private void EcoBox_1_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            CheckTrash("플라스틱", btn);
+            CheckTrash("plastic", btn);
         }
 
         private void paperBox_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            CheckTrash("종이", btn);
+            CheckTrash("paper", btn);
 
         }
         private void VinylBox_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            CheckTrash("비닐", btn);
+            CheckTrash("vinyl", btn);
         }
 
         private void CanBox_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            CheckTrash("캔", btn);
+            CheckTrash("can", btn);
         }
 
         //카운트다운 타이머 Tick
@@ -379,10 +385,10 @@ namespace Eco_Quest
         {
             Dictionary<string, string> buttonInfo = new Dictionary<string, string>
             {
-                { "PlasticBox", "플라스틱" },
-                { "PaperBox", "종이" },
-                { "VinylBox", "비닐" },
-                { "CanBox", "캔" }
+                { "PlasticBox", "plastic" },
+                { "PaperBox", "paper" },
+                { "VinylBox", "vinyl" },
+                { "CanBox", "can" }
             };
 
             int i = 0;
@@ -404,10 +410,10 @@ namespace Eco_Quest
 
         private void ResetButtonPosition()
         {
-            foreach(var item in buttonPositions)
+            foreach (var item in buttonPositions)
             {
                 Button btn = this.Controls.Find(item.Key, true).FirstOrDefault() as Button;
-                if(btn != null)
+                if (btn != null)
                 {
                     btn.Location = item.Value;
                 }
@@ -520,6 +526,41 @@ namespace Eco_Quest
         private void scoreLabel_Click(object sender, EventArgs e)
         {
             scoreLabel.Text = "점수 : " + score;
+        }
+
+        private void MainGame_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Pause();
+            }
+        }
+
+        private void Pause()
+        {
+            // 타이머 모두 멈추기
+            gameTimer.Stop();
+            countDownTimer.Stop();
+            timerEffect.Stop();
+
+            // 메시지 박스 띄우기
+            var result = MessageBox.Show("게임을 종료하고 타이틀 화면으로 돌아가시겠습니까?", "게임 종료 확인", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                titleMove();  // 타이틀 폼으로 이동
+            }
+            else
+            {
+                // 다시 타이머 시작
+                countDownTimer.Start();
+                gameTimer.Start();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Pause();
         }
     }
 }

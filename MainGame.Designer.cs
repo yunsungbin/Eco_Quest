@@ -41,6 +41,7 @@
             CountDownTimer = new System.Windows.Forms.Timer(components);
             scoreLabel = new Label();
             timePanel = new Panel();
+            button1 = new Button();
             timePanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -136,11 +137,22 @@
             timePanel.Size = new Size(819, 580);
             timePanel.TabIndex = 9;
             // 
+            // button1
+            // 
+            button1.Location = new Point(41, 547);
+            button1.Name = "button1";
+            button1.Size = new Size(87, 34);
+            button1.TabIndex = 10;
+            button1.Text = "ESC";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // MainGame
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(843, 604);
+            Controls.Add(button1);
             Controls.Add(timePanel);
             Controls.Add(scoreLabel);
             Controls.Add(progressBar1);
@@ -170,5 +182,6 @@
         private System.Windows.Forms.Timer CountDownTimer;
         private Label scoreLabel;
         private Panel timePanel;
+        private Button button1;
     }
 }
